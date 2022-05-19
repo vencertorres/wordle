@@ -36,13 +36,14 @@ export interface KeyboardProps {
 
 export interface KeyboardRowProps {
   row: Map<string, string>;
-  isLast: boolean;
+  rowNumber: number;
   handleKeyDown: (event: any) => void;
 }
 
 export interface ButtonProps {
-  letter: string;
+  value: string;
   color?: string;
   handleKeyDown: (event: any) => void;
-  children?: React.ReactNode;
+  children: React.ReactNode;
+  isLarge: boolean;
 }

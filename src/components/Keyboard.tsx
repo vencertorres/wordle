@@ -9,17 +9,13 @@ const Keyboard = ({
 }: KeyboardProps) => {
   return (
     <div className="keyboard">
-      <KeyboardRow
-        row={firstRow}
-        isLast={false}
-        handleKeyDown={handleKeyDown}
-      />
+      <KeyboardRow row={firstRow} rowNumber={1} handleKeyDown={handleKeyDown} />
       <KeyboardRow
         row={secondRow}
-        isLast={false}
+        rowNumber={2}
         handleKeyDown={handleKeyDown}
       />
-      <KeyboardRow row={lastRow} isLast={true} handleKeyDown={handleKeyDown} />
+      <KeyboardRow row={lastRow} rowNumber={3} handleKeyDown={handleKeyDown} />
     </div>
   );
 };

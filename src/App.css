@@ -1,4 +1,6 @@
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -10,6 +12,13 @@ body {
 
 h1 {
   color: #fff;
+}
+
+.board {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .board-row {
@@ -40,9 +49,9 @@ h1 {
 
 .box {
   position: relative;
-  width: 4rem;
-  height: 4rem;
-  margin: 0.2rem;
+  width: 3.75rem;
+  height: 3.75rem;
+  margin: 0.15rem;
   font-size: 2rem;
   color: #fff;
   text-transform: uppercase;
@@ -130,21 +139,37 @@ h1 {
 }
 
 .keyboard {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.keyboard-row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 0.5rem;
 }
 
 button {
-  padding: 1.3rem 1rem;
-  margin: 0.15rem;
-  border: none;
-  border-radius: 0.2rem;
+  flex: 0 1 2.5rem;
+  height: 3.5rem;
+  border: 0;
+  border-radius: 0.15rem;
   background-color: #818384;
+  font-family: inherit;
   font-weight: inherit;
   color: #fff;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+button.lg {
+  flex-basis: 3.5rem;
+  padding: 0 0.15rem;
+}
+
+.spacer {
+  flex: 0 1 1rem;
 }
 
 .toast {
@@ -157,9 +182,9 @@ button {
 }
 
 main {
+  height: 100vh;
   position: relative;
   display: flex;
-  gap: 2.5rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;

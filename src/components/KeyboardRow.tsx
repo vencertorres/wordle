@@ -1,35 +1,32 @@
 import { KeyboardRowProps } from "../types";
 import Button from "./Button";
 
-const KeyboardRow = ({ row, isLast, handleKeyDown }: KeyboardRowProps) => {
-  if (isLast) {
-    return (
-      <div>
-        <Button letter="Enter" handleKeyDown={handleKeyDown} />
-        {Array.from(row, ([letter, color]) => (
-          <Button
-            key={letter}
-            letter={letter}
-            color={color}
-            handleKeyDown={handleKeyDown}
-          />
-        ))}
-        <Button letter="Backspace" handleKeyDown={handleKeyDown}>
-          <i className="fa-solid fa-delete-left"></i>
-        </Button>
-      </div>
-    );
-  }
+const KeyboardRow = ({ row, rowNumber, handleKeyDown }: KeyboardRowProps) => {
   return (
-    <div>
+    <div className="keyboard-row">
+      {rowNumber === 2 && <div className="spacer"></div>}
+      {rowNumber === 3 && (
+        <Button value="Enter" handleKeyDown={handleKeyDown} isLarge={true}>
+          Enter
+        </Button>
+      )}
       {Array.from(row, ([letter, color]) => (
         <Button
           key={letter}
-          letter={letter}
+          value={letter}
           color={color}
           handleKeyDown={handleKeyDown}
-        />
+          isLarge={false}
+        >
+          {letter}
+        </Button>
       ))}
+      {rowNumber === 2 && <div className="spacer"></div>}
+      {rowNumber === 3 && (
+        <Button value="Backspace" handleKeyDown={handleKeyDown} isLarge={true}>
+          <i className="fa-solid fa-delete-left"></i>
+        </Button>
+      )}
     </div>
   );
 };
