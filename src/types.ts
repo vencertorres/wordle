@@ -9,15 +9,13 @@ export enum Message {
 
 export interface ToastProps {
   message: string | null;
-  delay: number;
 }
 
 export interface BoardProps {
-  board: string[][];
   words: string[];
   word: string;
   solution: string;
-  isRowValid: boolean;
+  valid: boolean;
 }
 
 export interface BoxProps {
