@@ -1,47 +1,51 @@
-export enum Message {
-  Genius,
-  Magnificent,
-  Splendid,
-  Impressive,
-  Great,
-  Phew,
+export enum LetterState {
+  Initial = "",
+  Correct = "correct",
+  Present = "present",
+  Absent = "absent",
 }
 
-export interface ToastProps {
-  message: string | null;
+export type Ref = HTMLDivElement;
+
+export interface Letter {
+  [letter: string]: LetterState;
 }
 
 export interface BoardProps {
-  words: string[];
-  word: string;
-  solution: string;
-  valid: boolean;
+  boardState: Letter[][];
+  currentRowIndex: number;
+  success: boolean;
 }
 
-export interface BoxProps {
-  letter?: string;
-  color?: string;
+export interface RowProps {
+  word: Letter[];
+  success: boolean;
+}
+
+export interface TileProps {
+  letter: string;
+  color: LetterState;
+  revealed: boolean;
   index: number;
-  animation?: "zoom" | "flip" | "bounce";
 }
 
 export interface KeyboardProps {
-  firstRow: Map<string, string>;
-  secondRow: Map<string, string>;
-  lastRow: Map<string, string>;
-  handleKeyDown: (event: any) => void;
+  keyState: Letter;
+  handleKey: (e: KeyboardEvent | string) => void;
 }
 
-export interface KeyboardRowProps {
-  row: Map<string, string>;
-  rowNumber: number;
-  handleKeyDown: (event: any) => void;
+export interface KeybordRowProps {
+  keys: string;
+  keyState: Letter;
+  leftElem?: React.ReactNode;
+  rightElem?: React.ReactNode;
+  handleKey: (e: KeyboardEvent | string) => void;
 }
 
 export interface ButtonProps {
-  value: string;
-  color?: string;
-  handleKeyDown: (event: any) => void;
-  children: React.ReactNode;
-  isLarge: boolean;
+  letter: string;
+  keyState?: LetterState;
+  big: boolean;
+  children?: React.ReactNode;
+  handleKey: (e: KeyboardEvent | string) => void;
 }

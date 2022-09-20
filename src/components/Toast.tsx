@@ -1,7 +1,3 @@
-import { ToastProps } from "../types";
-
-const Toast = ({ message }: ToastProps) => {
-  return message ? <div className="toast">{message}</div> : null;
-};
-
-export default Toast;
+export default function Toast({ message }: { message: string }) {
+  return <div className="toast-container">{message && <div className="toast">{message}</div>}</div>;
+}

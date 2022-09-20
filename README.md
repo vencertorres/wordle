@@ -1,3 +1,3 @@
 # Wordle
 
-A Wordle clone built using [Create React App](https://create-react-app.dev/)
+A Wordle clone built using [React](https://reactjs.org/)

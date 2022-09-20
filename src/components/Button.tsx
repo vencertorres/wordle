@@ -1,23 +1,12 @@
 import { ButtonProps } from "../types";
 
-const Button = ({
-  value,
-  color,
-  handleKeyDown,
-  children,
-  isLarge,
-}: ButtonProps) => {
+export default function Button({ letter, keyState, big, children, handleKey }: ButtonProps) {
   return (
     <button
-      type="button"
-      className={isLarge ? "lg" : color}
-      style={{ transitionDelay: "1s" }}
-      value={value}
-      onClick={handleKeyDown}
+      className={big ? "key big" : keyState ? `key ${keyState}` : "key"}
+      onClick={() => handleKey(letter)}
     >
-      {children}
+      {children || letter}
     </button>
   );
-};
-
-export default Button;
+}
