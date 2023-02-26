@@ -14864,7 +14864,7 @@ export const wordlist = [...answers, ...allowedGuesses];
 const baseDate = new Date(2021, 5, 19, 0, 0, 0, 0);
 const today = new Date();
 
-function getDateDifference(e: Date, a: Date) {
+function getDateDifference(e, a) {
   let s = new Date(e);
   let t = new Date(a).setHours(0, 0, 0, 0) - s.setHours(0, 0, 0, 0);
   return Math.round(t / 864e5);
