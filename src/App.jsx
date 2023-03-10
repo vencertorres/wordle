@@ -53,13 +53,11 @@ function App() {
     if (!allowTyping.current || history.includes(answer) || currentRow === 6)
       return;
 
-    const key = event.key ?? event.target.value;
-
-    if (/^[a-z]$/.test(key) && guess.length < 5) {
-      setGuess(guess + key);
-    } else if (key === "Backspace") {
+    if (/^[a-z]$/.test(event.key) && guess.length < 5) {
+      setGuess(guess + event.key);
+    } else if (event.key === "Backspace") {
       setGuess(guess.slice(0, -1));
-    } else if (key === "Enter") {
+    } else if (event.key === "Enter") {
       if (guess.length < 5) {
         showMessage("Not enough letters", "", 1000);
       } else if (!answers.includes(guess)) {
@@ -134,7 +132,7 @@ function App() {
           </div>
         </div>
 
-        <Keyboard onClick={handleKeyDown} word={history.at(-1)} />
+        <Keyboard word={history.at(-1)} />
       </main>
     </>
   );
@@ -142,7 +140,7 @@ function App() {
 
 export default App;
 
-function Keyboard({ onClick, word }) {
+function Keyboard({ word }) {
   const [map, setMap] = useState(() => new Map());
 
   useEffect(() => {
@@ -155,13 +153,17 @@ function Keyboard({ onClick, word }) {
 
   const letters = [[..."qwertyuiop"], [..."asdfghjkl"], [..."zxcvbnm"]];
 
+  function handleClick(event) {
+    window.dispatchEvent(new KeyboardEvent("keydown", { key: event.target.value }))
+  }
+
   return (
     <div className="keyboard">
       {letters.map((row, i) => (
         <div key={i} className="keyboard-row">
           {i === 1 && <div className="spacer"></div>}
           {i === 2 && (
-            <button className="btn big" value="Enter" onClick={onClick}>
+            <button className="btn big" value="Enter" onClick={handleClick}>
               Enter
             </button>
           )}
@@ -170,14 +172,14 @@ function Keyboard({ onClick, word }) {
               key={letter}
               className={"btn" + (map.get(letter) ?? "")}
               value={letter}
-              onClick={onClick}
+              onClick={handleClick}
             >
               {letter}
             </button>
           ))}
           {i === 1 && <div className="spacer"></div>}
           {i === 2 && (
-            <button className="btn big" value="Backspace" onClick={onClick}>
+            <button className="btn big" value="Backspace" onClick={handleClick}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
